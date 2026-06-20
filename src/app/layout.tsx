@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const SITE_URL = "https://lucide.in";
+const SITE_URL = "https://www.lucide.in";
 
 export const metadata: Metadata = {
   // metadataBase resolves every relative OG/canonical URL — without it, social

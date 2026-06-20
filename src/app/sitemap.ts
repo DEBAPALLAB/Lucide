@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 
-const SITE_URL = 'https://lucide.in';
+const SITE_URL = 'https://www.lucide.in';
 
 // Single-page site — the homepage is the only indexable route today. As real
 // routes are added (e.g. /work/[slug]), append them here. Served at /sitemap.xml.

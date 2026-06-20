@@ -11,7 +11,7 @@
  * humans, machine-readable to crawlers. No layout impact whatsoever.
  */
 
-const SITE_URL = 'https://lucide.in';
+const SITE_URL = 'https://www.lucide.in';
 
 const organization = {
   '@context': 'https://schema.org',

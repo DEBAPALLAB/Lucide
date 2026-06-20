@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 
-const SITE_URL = 'https://lucide.in';
+const SITE_URL = 'https://www.lucide.in';
 
 // Served at /robots.txt. Allow everything, point crawlers at the sitemap.
 export default function robots(): MetadataRoute.Robots {
