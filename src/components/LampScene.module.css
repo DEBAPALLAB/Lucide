@@ -1,0 +1,240 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   LampScene — cinematic, restrained animations
+   Low amplitudes, slow cycles. The scene should feel alive, not performed.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Keyframes ─────────────────────────────────────────────────────────────── */
+
+/* Slow ambient breath — barely perceptible */
+@keyframes lsPulse {
+  0%, 100% { opacity: 0.92; }
+  50%       { opacity: 1;    }
+}
+
+/* Halo pulse — tiny scale, mostly opacity */
+@keyframes lsPulseScale {
+  0%, 100% { opacity: 0.88; transform: scale(1);    }
+  50%       { opacity: 1;    transform: scale(1.04); }
+}
+
+/* Ray shimmer — slow atmospheric scintillation */
+@keyframes lsShimmer {
+  0%,  20%  { opacity: 1;    }
+  45%        { opacity: 0.40; }
+  70%        { opacity: 0.72; }
+  90%, 100%  { opacity: 1;    }
+}
+
+/* Beam breathe — the cone barely moves */
+@keyframes lsBeamBreathe {
+  0%, 100% { opacity: 0.88; }
+  50%       { opacity: 1;    }
+}
+
+/* Flicker — lamp startup sequence */
+@keyframes lsFlicker {
+  0%   { opacity: 0;    }
+  6%   { opacity: 0.70; }
+  10%  { opacity: 0;    }
+  16%  { opacity: 0.46; }
+  20%  { opacity: 0;    }
+  28%  { opacity: 0.84; }
+  34%  { opacity: 0.14; }
+  40%  { opacity: 0.90; }
+  46%  { opacity: 0;    }
+  52%  { opacity: 1;    }
+  100% { opacity: 1;    }
+}
+
+/* Person entrance — rises slowly from below */
+@keyframes lsAppear {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* Ground pool ebb */
+@keyframes lsGroundPulse {
+  0%, 100% { opacity: 0.80; }
+  50%       { opacity: 1;    }
+}
+
+/* Person aura */
+@keyframes lsAuraPulse {
+  0%, 100% { opacity: 0.50; transform: scale(1);    }
+  50%       { opacity: 0.72; transform: scale(1.04); }
+}
+
+/* Atmosphere */
+@keyframes lsAtmoPulse {
+  0%, 100% { opacity: 0.88; }
+  50%       { opacity: 1;    }
+}
+
+/* ── Element styles ────────────────────────────────────────────────────────── */
+
+.scene {
+  display: block;
+  overflow: visible;
+}
+
+/* Background — static */
+.background { /* no animation */ }
+
+/* Atmosphere */
+.atmosphere {
+  mix-blend-mode: screen;
+}
+.atmosphereShape {
+  animation: lsAtmoPulse 6s ease-in-out infinite;
+}
+
+/* Beam — very slow breathe */
+.beam {
+  mix-blend-mode: screen;
+}
+.beamOuter {
+  animation: lsBeamBreathe 5s ease-in-out infinite;
+}
+.beamCore {
+  animation: lsBeamBreathe 5s ease-in-out infinite;
+  animation-delay: -1.2s;
+}
+
+.aimBeam {
+  mix-blend-mode: screen;
+  opacity: 0;
+  transition: opacity 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.aimBeamOuter,
+.aimBeamCore {
+  animation: lsBeamBreathe 4s ease-in-out infinite;
+}
+.aimed .beam {
+  opacity: 0.22;
+}
+.aimed .aimBeam {
+  opacity: var(--ls-intensity, 1);
+}
+
+/* Rays (loader only) */
+.rays {
+  mix-blend-mode: screen;
+}
+.ray {
+  animation: lsShimmer 5s ease-in-out infinite;
+  animation-delay: var(--ray-delay, 0s);
+}
+
+/* Ground pool */
+.groundPool {
+  mix-blend-mode: screen;
+}
+.poolOuter {
+  animation: lsGroundPulse 5s ease-in-out infinite;
+}
+.poolInner {
+  animation: lsGroundPulse 5s ease-in-out infinite;
+  animation-delay: -2.0s;
+}
+
+/* Ground line — static */
+.groundLine { /* no animation */ }
+
+/* Post — static */
+.post    { /* no animation */ }
+.pole    { /* no animation */ }
+.poleBase { /* no animation */ }
+.arm      { /* no animation */ }
+.armEdge  { /* no animation */ }
+
+/* Fixture — static housing, glowing lens */
+.fixtureRig {
+  transform-box: view-box;
+  /* pivot at the mount (top of housing) so the head swings like a real articulated arm */
+  transform-origin: 258px 113px;
+  /* snappy: fast with a tiny overshoot so the head "locks" onto the text */
+  transition: transform 170ms cubic-bezier(0.2, 1.5, 0.4, 1), filter 170ms ease;
+}
+.aimed .fixtureRig {
+  transform: rotate(23deg);
+}
+.fixture      { /* no animation */ }
+.fixtureBody  { /* no animation */ }
+.fixtureTop   { /* no animation */ }
+.fixtureLens {
+  animation: lsPulse 4s ease-in-out infinite;
+}
+
+/* Lamp halo — two rings, no mid ring */
+.lampHalo {
+  transform-box: view-box;
+  transform-origin: 258px 132px;
+  transition: transform 170ms cubic-bezier(0.2, 1.5, 0.4, 1), opacity 170ms ease;
+}
+.aimed .lampHalo {
+  transform: translate(22px, 9px) scale(1.14);
+}
+.haloOuter {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: lsPulseScale 4.5s ease-in-out infinite;
+}
+.haloInner {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: lsPulse 3.8s ease-in-out infinite;
+  animation-delay: -1.4s;
+}
+.haloHot {
+  animation: lsPulse 3.2s ease-in-out infinite;
+  animation-delay: -2.0s;
+}
+
+/* Person */
+.person {
+  opacity: 0;
+  animation: lsAppear 2.0s cubic-bezier(0.16, 1, 0.3, 1) 1.0s forwards;
+}
+.personAura {
+  mix-blend-mode: screen;
+  animation: lsAuraPulse 4.2s ease-in-out infinite;
+}
+.personPool {
+  mix-blend-mode: screen;
+  animation: lsGroundPulse 4.2s ease-in-out infinite;
+  animation-delay: -1.2s;
+}
+
+/* ── State control via CSS custom property ──────────────────────────────────── */
+/* Set --ls-intensity on the <svg> element to control all light groups at once */
+.lightGroup {
+  opacity: var(--ls-intensity, 1);
+}
+
+.aimed .haloOuter {
+  opacity: 0.72;
+}
+.aimed .haloInner {
+  opacity: 0.86;
+}
+.aimed .haloHot {
+  opacity: 1;
+}
+
+/* ── Reduced motion ─────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .atmosphereShape,
+  .beamOuter, .beamCore,
+  .ray,
+  .poolOuter, .poolInner,
+  .fixtureLens,
+  .haloOuter, .haloInner, .haloHot,
+  .personAura, .personPool {
+    animation: none;
+    opacity: 1;
+  }
+  .person {
+    animation: none;
+    opacity: 1;
+  }
+}

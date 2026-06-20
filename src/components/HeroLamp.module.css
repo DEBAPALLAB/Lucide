@@ -1,0 +1,102 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   HeroLamp — a single articulated street-luminaire that turns to spotlight
+   the headline. One volumetric beam, soft light spread, cinematic motion.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.scene {
+  display: block;
+  overflow: visible;
+}
+
+/* ── The articulated rig: head + lens + emission + beam, as ONE unit ───────── */
+/* Rotation is driven on the SVG `transform` attribute (viewBox units) from JS,
+   so the pivot is exact regardless of how `slice` scales the SVG up. */
+.rig {
+  will-change: transform;
+}
+
+/* ── Beam: soft volumetric cone ───────────────────────────────────────────── */
+/* Blur is a CSS filter (was SVG feGaussianBlur). Promoting the group to its own
+   compositor layer means the blur is rasterized ONCE and the rig's rotation just
+   transforms the cached bitmap — no per-frame CPU re-raster. blur ≈ old
+   stdDeviation 7.5 in viewBox units. */
+.beam {
+  mix-blend-mode: screen;
+  filter: blur(7.5px);
+  will-change: transform;
+  transform: translateZ(0);
+}
+/* NOTE: the old per-child opacity "breathe" keyframes were removed here. Animating
+   a child's opacity invalidated the parent's cached blur layer every frame, which
+   re-rasterized the blur — that was the lag. Group opacity is driven by the inline
+   --lamp var (warm-up flicker), which already gives the beam life without touching
+   the blur raster. */
+
+/* Beam intensifies as it locks onto the text */
+.beam { transition: opacity 500ms ease; }
+.aimed .beam { opacity: 1; }
+
+/* ── Emission at the lens mouth — fused to the head ───────────────────────── */
+/* Same treatment — CSS blur ≈ old bloom stdDeviation 8, cached on its own layer. */
+.emit {
+  mix-blend-mode: screen;
+  filter: blur(8px);
+  will-change: transform;
+  transform: translateZ(0);
+}
+/* .emitGlow lives inside the CSS-blurred .emit layer — no per-element opacity
+   animation here (it would re-raster the blur). .emitCore / .lens are NOT blurred,
+   so their cheap pulse stays. */
+.emitCore { animation: hlPulse 3.4s ease-in-out infinite; animation-delay: -1.2s; }
+.lens     { animation: hlPulse 4.0s ease-in-out infinite; animation-delay: -2.0s; }
+
+/* ── Light that lands in the world ────────────────────────────────────────── */
+/* Ground pool under the resting beam — fades as the beam lifts away */
+.groundPool {
+  mix-blend-mode: screen;
+  transition: opacity 520ms ease;
+  opacity: 1;
+  animation: hlPool 6s ease-in-out infinite;
+}
+.aimed .groundPool { opacity: 0; }
+
+/* Wash across the headline — blooms in only when aimed */
+.textWash {
+  mix-blend-mode: screen;
+  opacity: 0;
+  transition: opacity 620ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.aimed .textWash { opacity: 1; }
+
+/* Atmospheric haze near the lamp for depth */
+.atmo {
+  mix-blend-mode: screen;
+  animation: hlBreathe 7s ease-in-out infinite;
+}
+
+/* Static structure */
+.post { /* no animation */ }
+
+/* ── Keyframes — restrained, cinematic ────────────────────────────────────── */
+@keyframes hlBreathe {
+  0%, 100% { opacity: 0.88; }
+  50%      { opacity: 1;    }
+}
+@keyframes hlPulse {
+  0%, 100% { opacity: 0.86; }
+  50%      { opacity: 1;    }
+}
+@keyframes hlPool {
+  0%, 100% { opacity: 0.82; }
+  50%      { opacity: 1;    }
+}
+
+/* ── Reduced motion ───────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .rig { transition: none; }
+  .beamOuter, .beamCore, .beamHot,
+  .emitGlow, .emitCore, .lens,
+  .groundPool, .atmo {
+    animation: none;
+  }
+}

@@ -1,0 +1,207 @@
+@import "tailwindcss";
+
+:root {
+  --void:           #06080d;
+  --ink:            #111111;
+  --ink-soft:       #1A1A1A;
+  --paper:          #F4F1EC;
+  --paper-dim:      #E8E3DA;
+  --paper-border:   #D9D3C8;
+  --white:          #FFFFFF;
+  --white-muted:    rgba(255, 255, 255, 0.52);
+  --white-dim:      rgba(255, 255, 255, 0.08);
+  --charcoal:       #1C1C1C;
+  --charcoal-muted: #6B6B6B;
+  --blue-sphere:    #3B7FE8;
+  --blue-glow:      #1A5FD4;
+  --blue-light:     #6FAAFF;
+  --blue-ambient:   rgba(59, 127, 232, 0.12);
+
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-heading: 'Public Sans', sans-serif;
+  --font-body:    'Public Sans', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+  --font-accent:  'Public Sans', sans-serif;
+  --font-public:  'Public Sans', sans-serif;
+  --font-quicksand: 'Quicksand', sans-serif;
+  --font-hind:    'Hind Siliguri', sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-base:      600ms;
+  --dur-slow:      900ms;
+}
+
+@theme inline {
+  --color-void: var(--void);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-paper: var(--paper);
+  --color-paper-dim: var(--paper-dim);
+  --color-paper-border: var(--paper-border);
+  --color-charcoal: var(--charcoal);
+  --color-charcoal-muted: var(--charcoal-muted);
+  --color-blue-sphere: var(--blue-sphere);
+  --color-blue-glow: var(--blue-glow);
+  --color-blue-light: var(--blue-light);
+  --color-blue-ambient: var(--blue-ambient);
+
+  --font-display: var(--font-display);
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+  --font-accent: var(--font-accent);
+  --font-public: var(--font-public);
+  --font-quicksand: var(--font-quicksand);
+  --font-hind: var(--font-hind);
+}
+
+body {
+  background: var(--void);
+  color: var(--white);
+  font-family: var(--font-body), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Hide default cursor on desktop devices that support hover */
+@media (hover: hover) {
+  html, body, a, button, select, input, textarea, [role="button"] {
+    cursor: none !important;
+  }
+}
+
+/* Dripping scroll indicator animation shifting background-position */
+@keyframes scrollDrip {
+  0% {
+    background-position: 0 -32px;
+  }
+  100% {
+    background-position: 0 32px;
+  }
+}
+
+.scroll-line-drip {
+  background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.22) 50%, transparent 100%);
+  background-size: 100% 64px;
+  background-repeat: no-repeat;
+  animation: scrollDrip 1.8s ease-in-out infinite;
+}
+
+/* Pulsing availability dot animation */
+@keyframes dotPulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.6;
+    box-shadow: 0 0 14px rgba(34, 197, 94, 0.8);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+  }
+}
+
+.availability-dot-pulse {
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+/* Lenis smooth scrolling rules */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Hero CTA — neo-brutalist offset button */
+.hero-cta-nb {
+  box-shadow: 3px 3px 0 rgba(249, 115, 22, 0.72);
+  transition: all 0.18s ease;
+}
+.hero-cta-nb:hover {
+  background: linear-gradient(135deg, #FCD34D 0%, #F97316 52%, #EF4444 100%) !important;
+  color: #06080d !important;
+  border-color: transparent !important;
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 0 rgba(255, 255, 255, 0.90);
+}
+.hero-cta-nb:active {
+  transform: translate(0, 0);
+  box-shadow: none;
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   HERO — MOBILE (≤767px) ONLY
+   Desktop layout is set inline in Hero.tsx and is untouched. These global rules
+   re-compose the hero for portrait: the lamp becomes a top-down spotlight, the
+   headline anchors to the lower third under the beam, and the floating labels
+   are removed. Plain global CSS (not styled-jsx) so it reliably reaches the
+   Framer <motion.div> elements too.
+   ════════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+  /* THE LAMP — framing is handled in HeroLamp.tsx via preserveAspectRatio
+     'xMinYMid slice' on narrow screens, which anchors the crop to the LEFT so the
+     luminaire is always in frame (no transform guesswork). No transform needed
+     here; the beam naturally throws down across the portrait canvas. */
+
+  /* Scrims: drop the right-scrim, raise the bottom-scrim for legibility. */
+  .hero-rscrim { opacity: 0 !important; }
+  .hero-bscrim { opacity: 1 !important; }
+
+  /* Remove the floating vertical label (noise in portrait). */
+  .hero-vlabel { display: none !important; }
+
+  /* Headline — bold, near-full-width, anchored to the lower third in the beam. */
+  .hero-headline {
+    top: auto !important;
+    right: auto !important;
+    left: clamp(22px, 6vw, 30px) !important;
+    bottom: clamp(150px, 30vh, 240px) !important;
+    transform: none !important;
+    width: min(90vw, 480px) !important;
+    text-align: left !important;
+  }
+  .hero-line { height: clamp(30px, 9.5vw, 52px) !important; }
+  .hero-line-text {
+    font-size: clamp(30px, 9.5vw, 52px) !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  .hero-cta-row {
+    justify-content: flex-start !important;
+    margin-top: clamp(24px, 6vw, 34px) !important;
+  }
+
+  /* Bottom bar — keep within margins, let the subline wrap. */
+  .hero-bottombar {
+    left: clamp(22px, 6vw, 30px) !important;
+    right: clamp(22px, 6vw, 30px) !important;
+    bottom: clamp(30px, 7vw, 42px) !important;
+    align-items: center !important;
+  }
+  .hero-subline {
+    white-space: normal !important;
+    max-width: 60vw;
+    line-height: 1.4 !important;
+    font-size: 13px !important;
+  }
+}
+
