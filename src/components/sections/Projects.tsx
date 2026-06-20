@@ -254,7 +254,7 @@ function ProjectCard({ project, index, total }: { project: ProjectData; index: n
       >
         <Image
           src={project.image}
-          alt={project.title}
+          alt={`${project.title} — ${project.meta} project by Lucide Tech`}
           fill
           sizes="(min-width: 768px) 90vw, 100vw"
           className="object-cover object-center transition-transform duration-700 ease-[0.16,1,0.3,1] group-hover:scale-[1.03]"

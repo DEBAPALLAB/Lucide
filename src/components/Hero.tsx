@@ -175,9 +175,14 @@ export default function Hero() {
           onClick={() => { if (!isTouch) setIsLocked(false); }}
           className="hero-headline pointer-events-auto select-text"
         >
-          {/* 3-line headline — blurred until lit by the lamp. On touch it's fully
-              revealed (the lamp stays a top-down spotlight rather than swinging). */}
-          <motion.div
+          {/* 3-line headline — the page's single <h1> for SEO. Rendered as
+              motion.h1 with default heading margin/size reset so it is visually
+              pixel-identical to the previous div; the inner lines carry all the
+              styling and animation exactly as before. Blurred until lit by the
+              lamp; on touch it's fully revealed. */}
+          <motion.h1
+            className="hero-h1"
+            style={{ margin: 0, fontSize: 'inherit', fontWeight: 'inherit', lineHeight: 'inherit' }}
             animate={{
               filter: isLocked || isTouch
                 ? 'blur(0px)'
@@ -203,7 +208,7 @@ export default function Hero() {
                 />
               </div>
             ))}
-          </motion.div>
+          </motion.h1>
 
           {/* CTA — visible while the lamp is locked (desktop) or always on touch */}
           <motion.div

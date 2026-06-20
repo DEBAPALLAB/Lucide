@@ -64,7 +64,7 @@ export default function Team() {
               <div className="relative aspect-square w-full overflow-hidden rounded-full">
                 <Image
                   src={member.photo!}
-                  alt={member.name}
+                  alt={`${member.name}, ${member.role} at Lucide Tech`}
                   fill
                   sizes="(min-width: 768px) 22vw, 45vw"
                   className="object-cover filter-[grayscale(0.2)_contrast(1.05)_brightness(1.05)] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04] group-hover:filter-[grayscale(0)_contrast(1.08)_brightness(1.08)]"
