@@ -9,8 +9,8 @@ type Member = {
 };
 
 const team: Member[] = [
-  { id: '01', name: 'Dev',    role: 'Founder · Head of Product', linkedin: 'https://www.linkedin.com/in/dev-designs/',                  photo: '/images/team/Dev.jpg' },
-  { id: '02', name: 'Dhruv',  role: 'CTO · Developer',           linkedin: 'https://www.linkedin.com/in/dhruv-shah-7a4482323',          photo: '/images/team/Dhruv.jpg' },
+  { id: '01', name: 'Dev',    role: 'Founder & CEO', linkedin: 'https://www.linkedin.com/in/dev-designs/',                  photo: '/images/team/Dev.jpg' },
+  { id: '02', name: 'Dhruv',  role: 'Co-founder · CTO · Sr. Developer',           linkedin: 'https://www.linkedin.com/in/dhruv-shah-7a4482323',          photo: '/images/team/Dhruv.jpg' },
   { id: '06', name: 'Tanvi',  role: 'CMO · Growth & Sales',      linkedin: 'https://www.linkedin.com/in/tanvi-gujarathi-10763b32a/',    photo: '/images/team/tanvi.jpg' },
   { id: '04', name: 'Shivam', role: 'Product · Growth',          linkedin: 'https://www.linkedin.com/in/shivam-prajapati-9aa553387/',   photo: '/images/team/Shivam.jpg' },
   { id: '03', name: 'Soham',  role: 'COO · Backend Developer',   linkedin: 'https://www.linkedin.com/in/soham-t-7b7889242/' },
