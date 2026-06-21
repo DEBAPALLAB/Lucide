@@ -55,7 +55,7 @@ const organization = {
   // sameAs ties the brand entity across the web — the core of disambiguation.
   sameAs: [
     'https://x.com/techlucide',
-    'https://www.linkedin.com/company/techlucide',
+    'https://www.linkedin.com/company/lucidetech',
     'https://instagram.com/lucide.tech',
   ],
   contactPoint: {

@@ -14,7 +14,7 @@ const sitemap = [
 ];
 
 const socials = [
-  { label: 'LinkedIn', href: 'https://linkedin.com/company/techlucide' },
+  { label: 'LinkedIn', href: 'https://linkedin.com/company/lucidetech' },
   { label: 'Instagram', href: 'https://instagram.com/lucide.tech' },
   { label: 'X / Twitter', href: 'https://x.com/techlucide' },
 ];
