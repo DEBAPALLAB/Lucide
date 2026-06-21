@@ -33,6 +33,16 @@ const organization = {
   email: 'team@lucide.in',
   foundingDate: '2024',
   slogan: 'We build what finds you in the dark.',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Nagpur',
+    addressRegion: 'Maharashtra',
+    addressCountry: 'IN',
+  },
+  areaServed: [
+    { '@type': 'City', name: 'Nagpur' },
+    { '@type': 'Country', name: 'India' },
+  ],
   knowsAbout: [
     'Web Design',
     'Web Development',
@@ -79,9 +89,20 @@ const professionalService = {
   image: `${SITE_URL}/opengraph-image`,
   email: 'team@lucide.in',
   description:
-    'Bespoke web design, development, SaaS builds, and SEO for high-ticket clients.',
+    'Bespoke web design, development, SaaS builds, and SEO. Based in Nagpur, India — serving clients across India and worldwide.',
   priceRange: '$$$',
-  areaServed: { '@type': 'Country', name: 'India' },
+  // Home city (Nagpur) for local-pack relevance; remote-first so no street
+  // address. areaServed covers both the city and the country.
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Nagpur',
+    addressRegion: 'Maharashtra',
+    addressCountry: 'IN',
+  },
+  areaServed: [
+    { '@type': 'City', name: 'Nagpur' },
+    { '@type': 'Country', name: 'India' },
+  ],
   parentOrganization: { '@id': `${SITE_URL}/#organization` },
   hasOfferCatalog: {
     '@type': 'OfferCatalog',

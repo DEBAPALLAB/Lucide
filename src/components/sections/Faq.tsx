@@ -20,7 +20,11 @@ type QA = { q: string; a: string };
 export const faqs: QA[] = [
   {
     q: 'What is Lucide Tech?',
-    a: 'Lucide Tech is a premium web design and development studio. We build bespoke, high-performance websites, web apps, and SaaS products for ambitious brands — from interface design through full-stack engineering and search visibility.',
+    a: 'Lucide Tech is a premium web design and development studio based in Nagpur, India, working with clients across India and worldwide. We build bespoke, high-performance websites, web apps, and SaaS products for ambitious brands — from interface design through full-stack engineering and search visibility.',
+  },
+  {
+    q: 'Where is Lucide Tech based?',
+    a: 'Lucide Tech is based in Nagpur, Maharashtra, India. We work remote-first with clients across India and internationally, so location is never a constraint on the projects we take on.',
   },
   {
     q: 'Is Lucide Tech the same as Tech Lucide?',
