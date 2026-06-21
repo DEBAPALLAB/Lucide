@@ -31,6 +31,10 @@ export const faqs: QA[] = [
     a: 'Yes. Lucide Tech and Tech Lucide refer to the same studio — it’s the same team, the same work, reachable at team@lucide.in and on lucide.in.',
   },
   {
+    q: 'Is "Lucid Tech" the same as Lucide Tech?',
+    a: 'Yes — "Lucid Tech" is a common spelling variant people use when searching for us. The correct name is Lucide Tech (also written Tech Lucide), the web design and development studio at lucide.in.',
+  },
+  {
     q: 'Is Lucide Tech related to the Lucide icon library (lucide.dev)?',
     a: 'No. Lucide Tech is an independent web design and development agency. We are not affiliated with the Lucide open-source icon library, Lucidchart, or any other company using a similar name.',
   },

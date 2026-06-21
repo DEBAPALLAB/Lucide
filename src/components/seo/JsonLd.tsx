@@ -18,7 +18,7 @@ const organization = {
   '@type': 'Organization',
   '@id': `${SITE_URL}/#organization`,
   name: 'Lucide Tech',
-  alternateName: ['Tech Lucide', 'Lucide', 'Lucide Agency'],
+  alternateName: ['Tech Lucide', 'Lucide', 'Lucide Agency', 'Lucid Tech'],
   legalName: 'Lucide Tech',
   url: SITE_URL,
   logo: {
@@ -72,7 +72,7 @@ const website = {
   '@id': `${SITE_URL}/#website`,
   url: SITE_URL,
   name: 'Lucide Tech',
-  alternateName: ['Tech Lucide', 'Lucide'],
+  alternateName: ['Tech Lucide', 'Lucide', 'Lucid Tech'],
   description:
     'Premium web design & development agency — Lucide Tech builds bespoke, high-performance websites and digital products.',
   publisher: { '@id': `${SITE_URL}/#organization` },
