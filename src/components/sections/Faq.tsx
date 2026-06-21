@@ -105,7 +105,7 @@ export default function Faq() {
     <section
       id="faq"
       aria-label="Frequently asked questions about Lucide Tech"
-      className="relative w-full bg-void px-6 py-24 md:px-[clamp(24px,5vw,80px)] md:py-28"
+      className="relative w-full bg-[#05070c] px-6 py-24 md:px-[clamp(24px,5vw,80px)] md:py-28"
     >
       <FaqJsonLd />
       <div className="mx-auto w-full max-w-[1400px] border-t border-white/10 pt-14">

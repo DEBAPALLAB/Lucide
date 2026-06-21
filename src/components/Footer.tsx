@@ -9,8 +9,8 @@ const sitemap = [
   { label: 'Capabilities', id: 'work' },
   { label: 'Work', id: 'projects' },
   { label: 'Team', id: 'team' },
-  { label: 'FAQ', id: 'faq' },
   { label: 'Contact', id: 'contact' },
+  { label: 'FAQ', id: 'faq' },
 ];
 
 const socials = [
