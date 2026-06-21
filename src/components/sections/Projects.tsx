@@ -498,6 +498,36 @@ function ProjectsHeader() {
   );
 }
 
+// Structured data — each case study as a CreativeWork crediting Lucide Tech.
+// Makes the portfolio machine-readable and reinforces the brand→work link.
+function ProjectsJsonLd() {
+  const SITE_URL = 'https://www.lucide.in';
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Featured projects by Lucide Tech',
+    itemListElement: projectsData.map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'CreativeWork',
+        name: p.title,
+        about: p.meta,
+        description: p.description,
+        url: p.link,
+        image: `${SITE_URL}${p.image}`,
+        creator: { '@type': 'Organization', name: 'Lucide Tech', url: SITE_URL },
+      },
+    })),
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
+
 export default function Projects() {
   return (
     <section
@@ -514,6 +544,8 @@ export default function Projects() {
           mixBlendMode: 'screen',
         }}
       />
+
+      <ProjectsJsonLd />
 
       <div className="relative z-10 mx-auto w-full max-w-[1400px]">
         {/* Section header */}

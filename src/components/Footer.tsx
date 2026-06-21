@@ -9,6 +9,7 @@ const sitemap = [
   { label: 'Capabilities', id: 'work' },
   { label: 'Work', id: 'projects' },
   { label: 'Team', id: 'team' },
+  { label: 'FAQ', id: 'faq' },
   { label: 'Contact', id: 'contact' },
 ];
 
@@ -120,7 +121,7 @@ export default function Footer() {
       {/* Ambient corner glow */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-40 top-0 h-[460px] w-[460px] rounded-full bg-blue-sphere/[0.06] blur-[130px]"
+        className="pointer-events-none absolute -left-40 top-0 h-[460px] w-[460px] rounded-full bg-blue-sphere/6 blur-[130px]"
       />
 
       <div className="relative z-10 mx-auto w-full max-w-[1400px]">
